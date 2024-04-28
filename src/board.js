@@ -8,6 +8,7 @@ class Board {
     constructor(size) {
         this.size = size
         this.board = this.createBoard(size)
+        this.moves = 0
     }
 
     createBoard(size) {
@@ -25,6 +26,7 @@ class Board {
         if (!this.checkSpace(i)) return
         this.board[i + this.checkSpace(i)] = this.board[i]
         this.board[i] = null
+        this.moves ++
     }
 
     checkSpace(index) {
