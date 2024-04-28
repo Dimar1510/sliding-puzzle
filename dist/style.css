@@ -1,0 +1,47 @@
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid {
+    --row: ;
+    --column: ;
+    --size: ;
+    --cell: calc(90vw / var(--size));
+    width: fit-content;
+    display: grid;
+    border: 2px solid black;
+    gap: 2px;
+    grid-template-columns: repeat(var(--size), clamp(50px, var(--cell), 100px));
+    grid-template-rows: repeat(var(--size), clamp(50px, var(--cell), 100px));
+}
+
+.cell {
+    width: 100%;
+    height: 100%;
+    background-color: beige;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    user-select: none;
+    cursor: pointer;
+
+    aspect-ratio: 1 / 1;
+}
+
+.cell.active {
+    grid-row: var(--row);
+    grid-column: var(--column);
+}
