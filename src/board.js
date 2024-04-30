@@ -32,8 +32,10 @@ class Board {
     checkSpace(index) {
         switch (null) {
             case this.board[index + 1]:
+                if (index % this.size === this.size - 1) return false
                 return 1
             case this.board[index - 1]:
+                if (index % this.size === 0) return false
                 return - 1
             case this.board[index + this.size]:
                 return this.size
