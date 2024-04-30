@@ -4,6 +4,7 @@ import { wrapGrid } from "animate-css-grid"
 const render = function() {
     const grid = document.querySelector('.grid')
     const buttonShuffle = document.getElementById('shuffle')
+    const buttonXSmall = document.getElementById('x-small')
     const buttonSmall = document.getElementById('small')
     const buttonMedium = document.getElementById('medium')
     const buttonLarge = document.getElementById('large')
@@ -48,11 +49,25 @@ const render = function() {
         over = bool
     }
 
+    function renderDialog(gameboard) {
+        const dialog = document.querySelector('.dialog')
+        const messageDiv = document.querySelector('.win-message')
+        const button = document.getElementById('play-again')
+        messageDiv.textContent = gameboard.moves
+        dialog.showModal()
+        button.onclick = () => {
+            game.newGame(gameboard.size)
+            dialog.close()
+        }
+    }
+
+
+    buttonXSmall.onclick = () => game.newGame(3)
     buttonSmall.onclick = () => game.newGame(4)
     buttonMedium.onclick = () => game.newGame(5)
     buttonLarge.onclick = () => game.newGame(6)
 
-    return { renderGrid, renderMessage, gameOver }
+    return { renderGrid, renderMessage, gameOver, renderDialog }
 }()
 
 export default render

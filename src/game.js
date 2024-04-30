@@ -5,9 +5,9 @@ const game = function() {
 
     function newGame(size) {
             const gameboard = new Board(size)
-            // gameboard.shuffle()
+            gameboard.shuffle()
             render.renderGrid(gameboard) 
-            render.renderMessage('Make a move')
+            render.renderMessage('Complete the puzzle')
             render.gameOver(false)   
     }
 
@@ -28,9 +28,10 @@ const game = function() {
         render.renderGrid(gameboard) 
         grid.style.pointerEvents = 'all'
         if (!gameboard.checkWin()) {
+            
             render.renderMessage(`You've made ${gameboard.moves} moves`)
         } else {
-            render.renderMessage(`Congratulations!\nYou beat the game in ${gameboard.moves} moves!`)
+            render.renderDialog(gameboard)
             render.gameOver(true)
         }
         
