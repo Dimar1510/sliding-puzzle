@@ -21,7 +21,10 @@ const render = function() {
 
     function createCell(gameboard, i) {
         const cell = document.createElement('div')
-        const cellSize = (document.body.clientWidth / gameboard.size) * 0.9
+        const size = (document.body.clientWidth / gameboard.size) * 0.9
+        const cellSize = size > 100? 100 : size
+        grid.style.width = `${cellSize * gameboard.size}px`
+        
         grid.style.setProperty('--cell-size', `${cellSize}px`)
         if (gameboard.board[i]) {
             cell.classList.add('cell')
