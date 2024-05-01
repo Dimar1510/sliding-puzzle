@@ -35,6 +35,9 @@ const render = function() {
             const row = (i - column) / gameboard.size
             cell.style.left = `${(column) * cellSize}px`
             cell.style.top = `${(row) * cellSize}px`
+            if (gameboard.board[i].index === i + 1) {
+                cell.classList.add('complete')
+            }
             cell.onclick = () => {
                 if (over) return  
                 game.move(gameboard, cell, i, grid)
