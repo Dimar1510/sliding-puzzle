@@ -13,7 +13,8 @@ const game = function() {
 
     async function move(gameboard, cell, i, grid) {
         if (!gameboard.checkSpace(i)) return
-        const cellSize = (document.body.clientWidth / gameboard.size) * 0.9
+        const size = (document.body.clientWidth / gameboard.size) * 0.9
+        const cellSize = size > 100? 100 : size
         const index = i + gameboard.checkSpace(i)
         const column = index % gameboard.size
         const row = (index - column) / gameboard.size
