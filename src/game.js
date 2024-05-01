@@ -13,22 +13,18 @@ const game = function() {
 
     async function move(gameboard, cell, i, grid) {
         if (!gameboard.checkSpace(i)) return
+        const cellSize = (document.body.clientWidth / gameboard.size) * 0.9
         const index = i + gameboard.checkSpace(i)
         const column = index % gameboard.size
         const row = (index - column) / gameboard.size
-        grid.style.setProperty('--row', `${row + 1}/${row + 2}`)
-        grid.style.setProperty('--column', `${column + 1}/${column + 2}`)
+        cell.style.left = `${(column) * cellSize}px`
+        cell.style.top = `${(row) * cellSize}px`
         grid.style.pointerEvents = 'none'
-        cell.classList.add('active')
-        cell.style.gridRow = `${row + 1}/${row + 2}`
-        cell.style.gridColumn = `${column + 1}/${column + 2}`
         await timeOut()
-        cell.classList.remove('active')
         gameboard.moveCell(i) 
         render.renderGrid(gameboard) 
         grid.style.pointerEvents = 'all'
         if (!gameboard.checkWin()) {
-            
             render.renderMessage(`You've made ${gameboard.moves} moves`)
         } else {
             render.renderDialog(gameboard)
