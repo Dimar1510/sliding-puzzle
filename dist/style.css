@@ -89,9 +89,9 @@ button {
     border-radius: 0.5rem;
     font-family: "Montserrat", sans-serif;
     background-color: var(--clr-dark);
-    color: var(--clr-accent);
-    border: 2px solid var(--clr-accent);
-    font-weight: 600;
+    color: var(--clr-white);
+    border: 1px solid var(--clr-accent);
+    
     transition: 0.1s ease-in-out scale;
 }
 
