@@ -1,5 +1,4 @@
 import game from "./game"
-import { wrapGrid } from "animate-css-grid"
 
 const render = function() {
     const grid = document.querySelector('.grid')
@@ -9,8 +8,6 @@ const render = function() {
     const buttonMedium = document.getElementById('medium')
     const buttonLarge = document.getElementById('large')
     let over = false
-
-    wrapGrid(grid, {duration : 250})
 
     function renderGrid(gameboard) {
         grid.innerHTML = ''
@@ -24,17 +21,20 @@ const render = function() {
 
     function createCell(gameboard, i) {
         const cell = document.createElement('div')
+        const cellSize = (document.body.clientWidth / gameboard.size) * 0.9
+        grid.style.setProperty('--cell-size', `${cellSize}px`)
         if (gameboard.board[i]) {
             cell.classList.add('cell')
-            cell.innerText = gameboard.board[i].index
+            const content = document.createElement('div')
+            cell.append(content)
+            content.innerText = gameboard.board[i].index
             const column = i % gameboard.size
             const row = (i - column) / gameboard.size
-            cell.style.gridRow = `${row + 1}/${row + 2}`
-            cell.style.gridColumn = `${column + 1}/${column + 2}`
+            cell.style.left = `${(column) * cellSize}px`
+            cell.style.top = `${(row) * cellSize}px`
             cell.onclick = () => {
                 if (over) return  
                 game.move(gameboard, cell, i, grid)
-               
             }
         }
         return cell
