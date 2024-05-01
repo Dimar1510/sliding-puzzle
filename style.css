@@ -48,7 +48,7 @@ body {
 .cell {
     width: var(--cell-size);
     height: var(--cell-size);
-    font-size: calc(var(--cell-size)*0.5);
+    font-size: calc(var(--cell-size)*0.3);
     user-select: none;
     cursor: pointer;
     position: absolute;
@@ -64,6 +64,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.cell.complete > div {
+    border: 5px solid var(--clr-accent); 
 }
 
 
